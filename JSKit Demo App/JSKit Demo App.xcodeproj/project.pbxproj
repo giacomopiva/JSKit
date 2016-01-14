@@ -22,6 +22,7 @@
 		7D725F631C25A03A00449915 /* UINavigationBar+JSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D725F591C25A03A00449915 /* UINavigationBar+JSKit.swift */; };
 		7D725F641C25A03A00449915 /* UIView+JSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D725F5A1C25A03A00449915 /* UIView+JSKit.swift */; };
 		7D725F651C25A03A00449915 /* UIViewController+JSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D725F5B1C25A03A00449915 /* UIViewController+JSKit.swift */; };
+		7DA9F1C81C47914900D6B597 /* Int+JSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9F1C71C47914900D6B597 /* Int+JSKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7D725F591C25A03A00449915 /* UINavigationBar+JSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+JSKit.swift"; sourceTree = "<group>"; };
 		7D725F5A1C25A03A00449915 /* UIView+JSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+JSKit.swift"; sourceTree = "<group>"; };
 		7D725F5B1C25A03A00449915 /* UIViewController+JSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+JSKit.swift"; sourceTree = "<group>"; };
+		7DA9F1C71C47914900D6B597 /* Int+JSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+JSKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				7D725F591C25A03A00449915 /* UINavigationBar+JSKit.swift */,
 				7D725F5A1C25A03A00449915 /* UIView+JSKit.swift */,
 				7D725F5B1C25A03A00449915 /* UIViewController+JSKit.swift */,
+				7DA9F1C71C47914900D6B597 /* Int+JSKit.swift */,
 			);
 			name = JSKit;
 			path = ../../JSKit;
@@ -177,6 +180,7 @@
 				7D725F621C25A03A00449915 /* UIImage+JSKit.swift in Sources */,
 				7D725F631C25A03A00449915 /* UINavigationBar+JSKit.swift in Sources */,
 				7D725F5F1C25A03A00449915 /* String+JSKit.swift in Sources */,
+				7DA9F1C81C47914900D6B597 /* Int+JSKit.swift in Sources */,
 				7D725F641C25A03A00449915 /* UIView+JSKit.swift in Sources */,
 				7D725F5D1C25A03A00449915 /* Network+JSKit.swift in Sources */,
 				7D725F2D1C259F6800449915 /* ViewController.swift in Sources */,
@@ -337,6 +341,7 @@
 				7D725F3B1C259F6800449915 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
