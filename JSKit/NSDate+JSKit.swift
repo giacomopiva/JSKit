@@ -3,6 +3,7 @@
 //  JSKit
 //
 //  Created by Giacomo Piva on 06/02/15.
+//  Copyright (c) 2015 Giacomo Piva. All rights reserved.
 //
 
 import UIKit
