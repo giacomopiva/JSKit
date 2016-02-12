@@ -9,10 +9,10 @@
 import UIKit
 
 class JSKit: NSObject {
-
-   /**
-    *  Apply Rotate Effect to a view
-    */
+    
+    /**
+     *  Apply Rotate Effect to a view
+     */
     static func applySpinAnimationToView(view:UIView, degree:Double, duration:Double) {
         UIView.beginAnimations("rotate", context: nil)
         UIView.setAnimationDuration(duration)
@@ -20,47 +20,69 @@ class JSKit: NSObject {
         UIView.commitAnimations()
     }
     
-   /**
-    *  Apply Fade In Effect to a view
-    */
-    static func applyFadeInEffectToView(view:UIView, duration:Double) {
-        view.alpha = 0;
-        UIView.beginAnimations("fadeInEventCoverView", context: nil)
-        UIView.setAnimationDuration(duration)
-        view.alpha = 1.0;
-        UIView.commitAnimations();
+    /**
+     *  Apply Fade In Effect to a view
+     */
+    static func applyFadeInEffectToView(view: UIView, duration: Double) {
+        view.alpha = 0.0
+        UIView.animateWithDuration(duration) { () -> Void in
+            view.alpha = 1.0
+        }
     }
-
-   /**
-    *  Apply Fade Out Effect to a view
-    */
-    static func applyFadeOutEffectToView(view:UIView, duration:Double) {
-        view.alpha = 1.0;
-        UIView.beginAnimations("fadeInEventCoverView", context: nil)
-        UIView.setAnimationDuration(duration)
-        view.alpha = 0;
-        UIView.commitAnimations();
+    
+    /**
+     *  Apply Fade In Effect to a view with completion handler
+     */
+    static func applyFadeInEffectToView(view: UIView, duration: Double, completion: ((complete: Bool) -> Void)) {
+        view.alpha = 0.0
+        UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            view.alpha = 1.0
+            }) { (complete: Bool) -> Void in
+                completion(complete: true)
+        }
     }
-
-   /**
-    *  Apply rounded corner to a view
-    */
+    
+    /**
+     *  Apply Fade Out Effect to a view
+     */
+    static func applyFadeOutEffectToView(view: UIView, duration: Double) {
+        view.alpha = 1.0
+        UIView.animateWithDuration(duration) { () -> Void in
+            view.alpha = 0.0
+        }
+    }
+    
+    /**
+     *  Apply Fade Out Effect to a view with completion handler
+     */
+    static func applyFadeOutEffectToView(view: UIView, duration: Double, completion: ((complete: Bool) -> Void)) {
+        view.alpha = 1.0
+        UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            view.alpha = 0.0
+            }) { (complete: Bool) -> Void in
+                completion(complete: true)
+        }
+    }
+    
+    /**
+     *  Apply rounded corner to a view
+     */
     static func applyRoundCornerToView(view:UIView, radius:Float = 5) {
         view.layer.cornerRadius = CGFloat(radius)
-        view.layer.masksToBounds = true        
+        view.layer.masksToBounds = true
     }
-
-   /**
-    *  Apply Border to a view
-    */
+    
+    /**
+     *  Apply Border to a view
+     */
     static func applyBorderToView(view:UIView, thickness:Float = 1.0, color:UIColor = UIColor.blackColor()) {
         view.layer.borderWidth = CGFloat(thickness)
         view.layer.borderColor = color.CGColor
     }
     
-   /**
-    *  Apply Light Shadow Effect to a view
-    */
+    /**
+     *  Apply Light Shadow Effect to a view
+     */
     static func applyLightShadowToView(view:UIView, color:UIColor = UIColor.lightGrayColor()) {
         view.layer.shadowColor = color.CGColor
         view.layer.masksToBounds = false
@@ -68,10 +90,10 @@ class JSKit: NSObject {
         view.layer.shadowRadius = 5
         view.layer.shadowOpacity = 0.5
     }
-
-   /**
-    *  Apply the Blur Effect to a view
-    */
+    
+    /**
+     *  Apply the Blur Effect to a view
+     */
     static func applyBlurEffectToView(view:UIView, blurEffectStyle:UIBlurEffectStyle = .Dark) {
         view.backgroundColor = UIColor.clearColor();
         let blurEffect:UIVisualEffect = UIBlurEffect(style:blurEffectStyle)
