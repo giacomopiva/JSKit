@@ -9,6 +9,18 @@
 import UIKit
 
 extension UIImage {
+    
+    /**
+     *  Create an UIImage from View
+     *  In other words it create a snapshot of the view
+     */
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(CGImage: image.CGImage!)
+    }
 
     /**
      *  Return an UIImage resized with @newSize and scaled to
