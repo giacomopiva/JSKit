@@ -12,6 +12,14 @@ import UIKit
 extension UIView {
     
     /**
+     * This methods create a UIViex froma a Xib file.
+     */
+
+    class func loadFromNib(name: String, bundle: NSBundle? = nil) -> UIView? {
+        return UINib(nibName: name, bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as? UIView
+    }
+
+    /**
 	 * This method create waiting wheel in the center of the view.
 	 * It is usefull when you want to load data from network.
      *
