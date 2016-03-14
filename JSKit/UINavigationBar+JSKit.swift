@@ -17,7 +17,7 @@ extension UINavigationBar {
      */
     func addImageRightBarItem(image: UIImage) -> UIImageView {
         let imageView = UIImageView(image: image);
-        imageView.frame = CGRectMake(kScreenWidth-image.size.width-5, 5, image.size.width, image.size.height);
+        imageView.frame = CGRectMake(kScreenWidth-30-10, 5, 36, 36);
         self.addSubview(imageView);
         return imageView;
     }

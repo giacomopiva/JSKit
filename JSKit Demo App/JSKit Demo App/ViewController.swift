@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         JSKit.applySpinAnimationToView(testView, degree: 180, duration: 0.7)
         
         // Add icon to the right side of the navigation bar afetr download it from network
-        JSKit.downloadImage("http://placehold.it/30x30.png", completion: { (image) -> Void in
+        JSKit.downloadImage("http://placehold.it/40x40.png", completion: { (image) -> Void in
             if let imageView = self.navigationController?.navigationBar.addImageRightBarItem(image!) {
                 JSKit.applyFadeInEffectToView(imageView, duration: 1.0)
             }
