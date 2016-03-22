@@ -18,7 +18,7 @@ extension String {
     // "abcde"[0...2] === "abc"
     // "abcde"[2..<4] === "cd"
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(Range(start: startIndex.advancedBy(r.startIndex), end: startIndex.advancedBy(r.endIndex)))
+        return substringWithRange(startIndex.advancedBy(r.startIndex)..<startIndex.advancedBy(r.endIndex))
     }
 
     /**

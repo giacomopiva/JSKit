@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         
         self.navigationItem.setHeaderWithTitleAndSubtitle("This is the title", subtitle: "This is the subtitle")
         
+        print("hello world!"[0])
+        print("hello world!"[8])
+        print("hello world!"[11])
+        
         JSKit.applyRoundCornerToView(testView)
         
         JSKit.applySpinAnimationToView(testView, degree: 180, duration: 0.7)
