@@ -62,4 +62,24 @@ extension String {
         }
         return s
     }
+    
+    /**
+     *  Calculate MD5 Hash of the String
+     *  Note that the 
+     *  #import <CommonCrypto/CommonCrypto.h>
+     *  must be added to the Bridging-Header.h file to work 
+     */
+    /*func md5Hash() -> String! {
+        let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
+        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
+        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        CC_MD5(str!, strLen, result)
+        let hash = NSMutableString()
+        for i in 0..<digestLen {
+            hash.appendFormat("%02x", result[i])
+        }
+        result.dealloc(digestLen)
+        return hash as String
+    }*/
 }
