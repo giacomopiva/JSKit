@@ -82,4 +82,25 @@ extension String {
         result.dealloc(digestLen)
         return hash as String
     }*/
+    
+    /**
+     Generates an NSAttributedString highligting words in the array
+     
+     - Parameter words: words to highlight with color
+     - Parameter color: color to use
+     
+     - Returns: NSAttributedString text
+     */
+    func highlightedTextWithWords(words: Array<String>, color: UIColor = UIColor.blueColor()) -> NSAttributedString {
+        let mutableString = NSMutableAttributedString(string: self, attributes: nil)
+        for word in words {
+            if let range    = self.rangeOfString(word) {
+                let start   = self.startIndex.distanceTo(range.startIndex)
+                let end     = range.startIndex.distanceTo(range.endIndex)
+                mutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(start, end))
+            }
+        }
+        
+        return mutableString
+    }
 }
