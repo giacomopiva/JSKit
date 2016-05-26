@@ -87,12 +87,16 @@ extension String {
          Generates an NSAttributedString highligting words in the array
          
          - Parameter words: words to highlight with color
-         - Parameter color: color to use
+         - Parameter color: color to use for highlighted text
+         - Parameter baseColor: color to use for non highlighted text
+         - Parameter baseFont: color to use for text
          
          - Returns: NSAttributedString text
      */
-    func highlightedTextWithWords(words: Array<String>, color: UIColor = UIColor.blueColor()) -> NSAttributedString {
-        let mutableString = NSMutableAttributedString(string: self, attributes: nil)
+    func highlightedTextWithWords(words: Array<String>, color: UIColor = UIColor.blueColor(), baseColor: UIColor = UIColor.blackColor(), baseFont: UIFont = UIFont(name: "System", size: 12)!) -> NSAttributedString {
+        let attributes = [NSFontAttributeName: baseFont, NSForegroundColorAttributeName: baseColor]
+        let mutableString = NSMutableAttributedString(string: self, attributes: attributes)
+        
         for word in words {
             if let range    = self.rangeOfString(word) {
                 let start   = self.startIndex.distanceTo(range.startIndex)
