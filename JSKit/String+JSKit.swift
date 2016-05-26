@@ -84,12 +84,12 @@ extension String {
     }*/
     
     /**
-     Generates an NSAttributedString highligting words in the array
-     
-     - Parameter words: words to highlight with color
-     - Parameter color: color to use
-     
-     - Returns: NSAttributedString text
+         Generates an NSAttributedString highligting words in the array
+         
+         - Parameter words: words to highlight with color
+         - Parameter color: color to use
+         
+         - Returns: NSAttributedString text
      */
     func highlightedTextWithWords(words: Array<String>, color: UIColor = UIColor.blueColor()) -> NSAttributedString {
         let mutableString = NSMutableAttributedString(string: self, attributes: nil)
