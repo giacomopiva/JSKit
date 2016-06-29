@@ -21,4 +21,20 @@ extension UIViewController {
         controller.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(controller, animated: true, completion: completion)
     }
+    
+    /**
+        This is useful to dismiss the keyboard when you tap around the screen.
+     
+        Use self.hideKeyboardWhenTappedAround() in viewDidLoad() to get the behavior 
+        automatically applied to all UITextField
+     */
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }
