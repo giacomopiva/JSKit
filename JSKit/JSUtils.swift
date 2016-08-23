@@ -16,14 +16,14 @@ let kDayInSeconds = 86400 // 60 * 60 * 24
 class JSUtils: NSObject {
 
    /**
-    *  Get the name of the App
+        Returns the name of the App
     */
     static func JSAppDisplayName() -> String {
         return UIDevice.currentDevice().name
     }
     
    /**
-    *  Get the major version of the App
+        Returns the major version of the App
     */
     static func JSAppMajorVersion() -> String {
         if let info = NSBundle.mainBundle().infoDictionary {
@@ -34,7 +34,7 @@ class JSUtils: NSObject {
     }
     
    /**
-    *  Get the minor version of the App
+        Returns the minor version of the App
     */
     static func JSAppMinorVersion() -> String {
         if let info = NSBundle.mainBundle().infoDictionary {
@@ -45,13 +45,34 @@ class JSUtils: NSObject {
     }
 
     /**
-     *  Prints all the font installed in the system
-     *  Usefull to find the name of installed fonts
+        Returns all the font installed in the system
+        Usefull to find the name of installed fonts
      */
     static func JSFontInstalled() {
         for name in UIFont.familyNames() {
             print(name)
             print(UIFont.fontNamesForFamilyName(name))
         }
+    }
+    
+    /**
+        Returns the Device model name
+     */
+    static func JSDeviceModelName() -> String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let id = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8 where value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return id
+    }
+    
+    /**
+        Returns the Device os version
+     */
+    static func JSDeviceSystemVersion() -> String {
+        return UIDevice.currentDevice().systemVersion
     }
 }

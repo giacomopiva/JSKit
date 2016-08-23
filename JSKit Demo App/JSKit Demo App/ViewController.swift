@@ -19,14 +19,24 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Printing the model name of the device
+        print(JSUtils.JSDeviceModelName())
+
+        // Printing the system version
+        print(JSUtils.JSDeviceSystemVersion())
+
+        // Setting header with title and subtitle
         self.navigationItem.setHeaderWithTitleAndSubtitle("This is the title", subtitle: "This is the subtitle")
         
+        // Using subscript for String object
         print("hello world!"[0])
         print("hello world!"[8])
         print("hello world!"[11])
         
+        // Applying rounded corner to an UIView
         JSKit.applyRoundCornerToView(testView)
         
+        // Applying spin animation to an UIView
         JSKit.applySpinAnimationToView(testView, degree: 180, duration: 0.7)
         
         // Add icon to the right side of the navigation bar afetr download it from network
@@ -36,16 +46,22 @@ class ViewController: UIViewController {
             }
         })
         
+        // Getting an HTTP response
         JSKit.responseForHTTPRequest("https://api.github.com/users/giacomopiva/repos") { (response) -> Void in
           print(response)
         }
         
+        // Testing dates created from custom formats
         let d1 = NSDate.dateFromCustomFormatString("01/09/2015", format: "dd/MM/yyyy")!
         let d2 = NSDate.dateFromCustomFormatString("03/09/2015", format: "dd/MM/yyyy")!
         
+        // Getting the number of days between two dates
         print("d2 is \(d2.daysFrom(d1)) days far from d1")
         
+        // Starting an activity indicator
         let waitingView = self.testImageView.startLoadingActivity()
+        
+        // Downloading an image from internet and then stopping the animation
         JSKit.downloadImage("http://placehold.it/360x666.png", completion: { (image) -> Void in
             self.testImageView.image = image
             self.view.stopLoadingActivity(waitingView)
