@@ -19,7 +19,7 @@ extension UIImage {
         view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        self.init(CGImage: image.CGImage!)
+        self.init(CGImage: image!.CGImage!)
     }
 
     /**
@@ -32,7 +32,7 @@ extension UIImage {
         image.drawInRect(CGRect(origin: CGPointZero, size: newSize))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()        
-        return scaledImage
+        return scaledImage!
     }
 
 }
