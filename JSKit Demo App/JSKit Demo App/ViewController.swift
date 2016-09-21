@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Printing the model name of the device
@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         }
         
         // Testing dates created from custom formats
-        let d1 = NSDate.dateFromCustomFormatString("01/09/2015", format: "dd/MM/yyyy")!
-        let d2 = NSDate.dateFromCustomFormatString("03/09/2015", format: "dd/MM/yyyy")!
+        let d1 = Date.dateFromCustomFormatString("01/09/2015", format: "dd/MM/yyyy")!
+        let d2 = Date.dateFromCustomFormatString("03/09/2015", format: "dd/MM/yyyy")!
         
         // Getting the number of days between two dates
         print("d2 is \(d2.daysFrom(d1)) days far from d1")

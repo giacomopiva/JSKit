@@ -12,13 +12,13 @@ extension String {
         
     // "abcde"[0] === 'a'
     subscript (i: Int) -> Character {
-        return self[self.startIndex.advancedBy(i)]
+        return self[self.characters.index(self.startIndex, offsetBy: i)]
     }
     
     // "abcde"[0...2] === "abc"
     // "abcde"[2..<4] === "cd"
     subscript (r: Range<Int>) -> String {
-        return substringWithRange(startIndex.advancedBy(r.startIndex)..<startIndex.advancedBy(r.endIndex))
+        return substring(with: characters.index(startIndex, offsetBy: r.lowerBound)..<characters.index(startIndex, offsetBy: r.upperBound))
     }
 
     /**
@@ -32,7 +32,7 @@ extension String {
     *  Remove HTML tags froma a String
     */
     func stringByStrippingHTML() -> String {
-        let str = self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        let str = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         return str
     }
     
@@ -40,12 +40,12 @@ extension String {
     *  Format a string as a currency
     */
     func stringWithCurrencyFormat() -> String {
-        let s = self.stringByReplacingOccurrencesOfString(",", withString: ".", options: [], range: nil)
-        let parts = s.componentsSeparatedByString(".")
+        let s = self.replacingOccurrences(of: ",", with: ".", options: [], range: nil)
+        let parts = s.components(separatedBy: ".")
         var decimals = "00"
         if (parts.count >= 2) {
             decimals = "\( parts[1] )"
-            decimals = (decimals.lenght() < 2) ? decimals.stringByAppendingString("0") : decimals
+            decimals = (decimals.lenght() < 2) ? decimals + "0" : decimals
         }
         return "\(parts[0]).\(decimals)"
     }
@@ -53,12 +53,12 @@ extension String {
    /**
     *  Format a string as a currency with currency symbol
     */
-    func stringWithCurrencyFormat(currency:String, trailing:Bool = false) -> String {
+    func stringWithCurrencyFormat(_ currency:String, trailing:Bool = false) -> String {
         var s = self.stringWithCurrencyFormat()
         if trailing {
-            s = s.stringByAppendingString(currency)
+            s = s + currency
         } else {
-            s = currency.stringByAppendingString(s)
+            s = currency + s
         }
         return s
     }
@@ -93,14 +93,14 @@ extension String {
          
          - Returns: NSAttributedString text
      */
-    func highlightedTextWithWords(words: Array<String>, color: UIColor = UIColor.blueColor(), baseColor: UIColor = UIColor.blackColor(), baseFont: UIFont = UIFont(name: "System", size: 12)!) -> NSAttributedString {
+    func highlightedTextWithWords(_ words: Array<String>, color: UIColor = UIColor.blue, baseColor: UIColor = UIColor.black, baseFont: UIFont = UIFont(name: "System", size: 12)!) -> NSAttributedString {
         let attributes = [NSFontAttributeName: baseFont, NSForegroundColorAttributeName: baseColor]
         let mutableString = NSMutableAttributedString(string: self, attributes: attributes)
         
         for word in words {
-            if let range    = self.rangeOfString(word) {
-                let start   = self.startIndex.distanceTo(range.startIndex)
-                let end     = range.startIndex.distanceTo(range.endIndex)
+            if let range    = self.range(of: word) {
+                let start   = self.characters.distance(from: self.startIndex, to: range.lowerBound)
+                let end     = self.distance(from: range.lowerBound, to: range.upperBound)
                 mutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(start, end))
             }
         }

@@ -8,8 +8,8 @@
 
 import UIKit
 
-let kScreenWidth    = UIScreen.mainScreen().bounds.size.width
-let kScreenHeight   = UIScreen.mainScreen().bounds.size.height
+let kScreenWidth    = UIScreen.main.bounds.size.width
+let kScreenHeight   = UIScreen.main.bounds.size.height
 
 let kDayInSeconds = 86400 // 60 * 60 * 24
 
@@ -19,14 +19,14 @@ class JSUtils: NSObject {
         Returns the name of the App
     */
     static func JSAppDisplayName() -> String {
-        return UIDevice.currentDevice().name
+        return UIDevice.current.name
     }
     
    /**
         Returns the major version of the App
     */
     static func JSAppMajorVersion() -> String {
-        if let info = NSBundle.mainBundle().infoDictionary {
+        if let info = Bundle.main.infoDictionary {
             return info["CFBundleShortVersionString"] as! String
         }
         
@@ -37,7 +37,7 @@ class JSUtils: NSObject {
         Returns the minor version of the App
     */
     static func JSAppMinorVersion() -> String {
-        if let info = NSBundle.mainBundle().infoDictionary {
+        if let info = Bundle.main.infoDictionary {
             return info["CFBundleVersion"] as! String
         }
         
@@ -49,9 +49,9 @@ class JSUtils: NSObject {
         Usefull to find the name of installed fonts
      */
     static func JSFontInstalled() {
-        for name in UIFont.familyNames() {
+        for name in UIFont.familyNames {
             print(name)
-            print(UIFont.fontNamesForFamilyName(name))
+            print(UIFont.fontNames(forFamilyName: name))
         }
     }
     
@@ -63,7 +63,7 @@ class JSUtils: NSObject {
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let id = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8 where value != 0 else { return identifier }
+            guard let value = element.value as? Int8 , value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         return id
@@ -73,6 +73,6 @@ class JSUtils: NSObject {
         Returns the Device os version
      */
     static func JSDeviceSystemVersion() -> String {
-        return UIDevice.currentDevice().systemVersion
+        return UIDevice.current.systemVersion
     }
 }

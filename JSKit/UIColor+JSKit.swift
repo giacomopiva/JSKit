@@ -15,26 +15,21 @@ extension UIColor {
     * It works with # and without as well.
     * With 3 or 6 chars (#fff or #ffffff)
     */
-    static func colorWithHexString(hexString:String) -> UIColor {
-        var str:String = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet)
+    static func colorWithHexString(_ hexString:String) -> UIColor {
+        var str:String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines as CharacterSet)
         var rgb:UInt32 = 0
-        str = str.uppercaseString
+        str = str.uppercased()
         if (str.hasPrefix("#")) {
-            str = str.substringFromIndex(str.startIndex.advancedBy(1))
+            str = str.substring(from: str.characters.index(str.startIndex, offsetBy: 1))
         }
         if (str.characters.count != 6) {
             if str.characters.count == 3 {
-                str = "".stringByAppendingString("\(str[0])")
-                        .stringByAppendingString("\(str[0])")
-                        .stringByAppendingString("\(str[1])")
-                        .stringByAppendingString("\(str[1])")
-                        .stringByAppendingString("\(str[2])")
-                        .stringByAppendingString("\(str[2])")
+                str = ((((("" + "\(str[0])") + "\(str[0])") + "\(str[1])") + "\(str[1])") + "\(str[2])") + "\(str[2])"
             } else {
-                return UIColor.grayColor()
+                return UIColor.gray
             }
         }
-        NSScanner(string: str).scanHexInt(&rgb)
+        Scanner(string: str).scanHexInt32(&rgb)
         return UIColor(
             red:    CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
             green:  CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
