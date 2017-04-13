@@ -16,7 +16,7 @@ class JSKit: NSObject {
     static func applySpinAnimationToView(_ view:UIView, degree:Double, duration:Double) {
         UIView.beginAnimations("rotate", context: nil)
         UIView.setAnimationDuration(duration)
-        view.transform = CGAffineTransform(rotationAngle: CGFloat(degree / 180.0 * M_PI))
+        view.transform = CGAffineTransform(rotationAngle: CGFloat(degree / 180.0 * Double.pi))
         UIView.commitAnimations()
     }
     

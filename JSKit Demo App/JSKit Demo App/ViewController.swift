@@ -33,10 +33,10 @@ class ViewController: UIViewController {
         print("hello world!"[8])
         print("hello world!"[11])
         
-        // Applying rounded corner to an UIView
+        // Applying rounded corner to the UIView
         JSKit.applyRoundCornerToView(testView)
         
-        // Applying spin animation to an UIView
+        // Applying spin animation to the UIView
         JSKit.applySpinAnimationToView(testView, degree: 180, duration: 0.7)
         
         // Add icon to the right side of the navigation bar afetr download it from network
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         let waitingView = self.testImageView.startLoadingActivity()
         
         // Downloading an image from internet and then stopping the animation
-        JSKit.downloadImage("http://placehold.it/360x666.png", completion: { (image) -> Void in
+        JSKit.downloadImage("http://placehold.it/240x256.png", completion: { (image) -> Void in
             self.testImageView.image = image
             self.view.stopLoadingActivity(waitingView)
         })

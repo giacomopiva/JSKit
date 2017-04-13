@@ -14,16 +14,9 @@ extension JSKit {
      *  Asynch download image at url
      */
     static func downloadImage(_ url: String, completion: @escaping (_ image: UIImage?) -> Void) {
-        let priority = DispatchQueue.GlobalQueuePriority.default
-        DispatchQueue.global(priority: priority).async {
-            let imageData = try? Data(contentsOf: URL(string: url)!)
-            DispatchQueue.main.async {
-                if let image = imageData {
-                    completion(UIImage(data: image)!)
-                } else {
-                    completion(nil)
-                }
-            }
+        let imageData = try? Data(contentsOf: URL(string: url)!)
+        DispatchQueue.main.async {
+            completion(UIImage(data: imageData!))
         }
     }
     
@@ -36,7 +29,7 @@ extension JSKit {
      *      println(data.count)
      *  }
      *
-     *  WARNING: iOS 9 wants https connection only by default.
+     *  WARNING: iOS > 9 wants https connection only by default.
      *           If you are using an API with http connection
      *           don't forget to add the:
      *              App Transport Security Settings
@@ -51,7 +44,7 @@ extension JSKit {
                 let data = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject!                
                 completion(data != nil ? data! as! [AnyObject] : [])
             } else {
-                print(error)
+                print(error ?? "Error while getting HTTP response")
             }
             
             completion([])
