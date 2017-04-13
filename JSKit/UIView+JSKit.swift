@@ -15,8 +15,8 @@ extension UIView {
      * This methods create a UIViex froma a Xib file.
      */
 
-    class func loadFromNib(name: String, bundle: NSBundle? = nil) -> UIView? {
-        return UINib(nibName: name, bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as? UIView
+    class func loadFromNib(_ name: String, bundle: Bundle? = nil) -> UIView? {
+        return UINib(nibName: name, bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 
     /**
@@ -39,18 +39,18 @@ extension UIView {
      *       })
      */
 	
-    func startLoadingActivity(backgroundColor:UIColor = UIColor.blackColor(), style:UIActivityIndicatorViewStyle = .White, ignoringEvents:Bool = false, animating:Bool = true) -> UIView {
-        let app = UIApplication.sharedApplication()
-        app.networkActivityIndicatorVisible = true
+    func startLoadingActivity(_ backgroundColor:UIColor = UIColor.black, style:UIActivityIndicatorViewStyle = .white, ignoringEvents:Bool = false, animating:Bool = true) -> UIView {
+        let app = UIApplication.shared
+        app.isNetworkActivityIndicatorVisible = true
         if ignoringEvents {
             app.beginIgnoringInteractionEvents()
         }
         let w = (self.frame.width - 50) / 2
         let h = ((self.frame.height - 50) / 2)
-        let waitingView = UIView(frame: CGRectMake(w, h, 50, 50))
+        let waitingView = UIView(frame: CGRect(x: w, y: h, width: 50, height: 50))
         waitingView.backgroundColor = backgroundColor
         let waitingSpin = UIActivityIndicatorView(activityIndicatorStyle:style)
-        waitingSpin.frame = CGRectMake(0, 0, 50, 50)
+        waitingSpin.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         waitingSpin.startAnimating()
         waitingView.addSubview(waitingSpin)
         self.addSubview(waitingView)
@@ -67,10 +67,10 @@ extension UIView {
      * @loadingView: the loading view created with startLoadingActivity method
      * @animating: Set true if you want a smooth fade in effect when it appears. Default true
      */
-    func stopLoadingActivity(loadingView:UIView, animating:Bool = true) {
-        let app = UIApplication.sharedApplication()
-        app.networkActivityIndicatorVisible = false
-        if app.isIgnoringInteractionEvents() {
+    func stopLoadingActivity(_ loadingView:UIView, animating:Bool = true) {
+        let app = UIApplication.shared
+        app.isNetworkActivityIndicatorVisible = false
+        if app.isIgnoringInteractionEvents {
             app.endIgnoringInteractionEvents()
         }
         if animating {

@@ -10,16 +10,16 @@ import UIKit
 
 extension UIViewController {
 
-    func showAlertWithTitle(title: String?, message: String?) {
+    func showAlertWithTitle(_ title: String?, message: String?) {
         self.showAlertWithTitle(title, message: message, completion: nil)
     }
 
-    func showAlertWithTitle(title: String?, message: String?, completion: (() -> Void)?) {
+    func showAlertWithTitle(_ title: String?, message: String?, completion: (() -> Void)?) {
         let theTitle = (title == nil ? "Error" : title)
         let theMessage = (message == nil ? "An error occured, please try again." : message)
-        let controller = UIAlertController(title: theTitle, message: theMessage, preferredStyle: .Alert)
-        controller.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(controller, animated: true, completion: completion)
+        let controller = UIAlertController(title: theTitle, message: theMessage, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(controller, animated: true, completion: completion)
     }
     
     /**

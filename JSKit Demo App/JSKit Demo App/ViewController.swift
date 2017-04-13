@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Printing the model name of the device
@@ -33,10 +33,10 @@ class ViewController: UIViewController {
         print("hello world!"[8])
         print("hello world!"[11])
         
-        // Applying rounded corner to an UIView
+        // Applying rounded corner to the UIView
         JSKit.applyRoundCornerToView(testView)
         
-        // Applying spin animation to an UIView
+        // Applying spin animation to the UIView
         JSKit.applySpinAnimationToView(testView, degree: 180, duration: 0.7)
         
         // Add icon to the right side of the navigation bar afetr download it from network
@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         }
         
         // Testing dates created from custom formats
-        let d1 = NSDate.dateFromCustomFormatString("01/09/2015", format: "dd/MM/yyyy")!
-        let d2 = NSDate.dateFromCustomFormatString("03/09/2015", format: "dd/MM/yyyy")!
+        let d1 = Date.dateFromCustomFormatString("01/09/2015", format: "dd/MM/yyyy")!
+        let d2 = Date.dateFromCustomFormatString("03/09/2015", format: "dd/MM/yyyy")!
         
         // Getting the number of days between two dates
         print("d2 is \(d2.daysFrom(d1)) days far from d1")
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         let waitingView = self.testImageView.startLoadingActivity()
         
         // Downloading an image from internet and then stopping the animation
-        JSKit.downloadImage("http://placehold.it/360x666.png", completion: { (image) -> Void in
+        JSKit.downloadImage("http://placehold.it/240x256.png", completion: { (image) -> Void in
             self.testImageView.image = image
             self.view.stopLoadingActivity(waitingView)
         })

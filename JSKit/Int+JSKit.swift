@@ -10,6 +10,6 @@ import UIKit
 
 extension Int {
     var degreesToRadians: CGFloat {
-        return CGFloat(self) * CGFloat(M_PI) / 180.0
+        return CGFloat(self) * CGFloat(Double.pi) / 180.0
     }
 }

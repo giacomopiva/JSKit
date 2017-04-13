@@ -13,17 +13,10 @@ extension JSKit {
     /**
      *  Asynch download image at url
      */
-    static func downloadImage(url: String, completion: (image: UIImage?) -> Void) {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            let imageData = NSData(contentsOfURL: NSURL(string: url)!)
-            dispatch_async(dispatch_get_main_queue()) {
-                if let image = imageData {
-                    completion(image: UIImage(data: image)!)
-                } else {
-                    completion(image: nil)
-                }
-            }
+    static func downloadImage(_ url: String, completion: @escaping (_ image: UIImage?) -> Void) {
+        let imageData = try? Data(contentsOf: URL(string: url)!)
+        DispatchQueue.main.async {
+            completion(UIImage(data: imageData!))
         }
     }
     
@@ -36,25 +29,25 @@ extension JSKit {
      *      println(data.count)
      *  }
      *
-     *  WARNING: iOS 9 wants https connection only by default.
+     *  WARNING: iOS > 9 wants https connection only by default.
      *           If you are using an API with http connection
      *           don't forget to add the:
      *              App Transport Security Settings
      *                  Allow Arbitrary Loads : YES
      *           key to your info.plist file.
      */
-    static func responseForHTTPRequest(url: String, completion: (response: AnyObject) -> Void) {
-        let request = NSURLRequest(URL: NSURL(string: url)!, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
-        let session = NSURLSession.sharedSession()
-        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+    static func responseForHTTPRequest(_ url: String, completion: @escaping (_ response: [AnyObject]) -> Void) {
+        let request = URLRequest(url: URL(string: url)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
+        let session = URLSession.shared
+        session.dataTask(with: request, completionHandler: {(data, response, error) in
             if error == nil {
-                let data: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                completion(response: data != nil ? data! : [])
+                let data = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject!                
+                completion(data != nil ? data! as! [AnyObject] : [])
             } else {
-                print(error)
+                print(error ?? "Error while getting HTTP response")
             }
             
-            completion(response: [])
+            completion([])
         }).resume()
     }
     
