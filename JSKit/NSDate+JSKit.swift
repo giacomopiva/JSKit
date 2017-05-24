@@ -32,6 +32,31 @@ extension Date {
     }
 
     /**
+     *  Returns the date as a String in ISO format yyyy-MM-dd HH:mm:ss
+     */
+    func ISOString() -> String {
+        let year = self.year()
+        let Month = self.month()
+        let day = self.day()
+
+        var date = "\(year)-"
+        
+        if (Month < 10) {
+            date += "0"
+        }
+        
+        date += "\(Month)-"
+        
+        if (day < 10) {
+            date += "0"
+        }
+        
+        date += "\(day) 00:00:00"
+        
+        return date
+    }
+    
+    /**
      *  Returns the Year of the NSDate
      */
     func year() -> Int {
