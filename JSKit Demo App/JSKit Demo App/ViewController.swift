@@ -58,6 +58,12 @@ class ViewController: UIViewController {
         // Getting the number of days between two dates
         print("d2 is \(d2.daysFrom(d1)) days far from d1")
         
+        // Showing date parts
+        print("-> \(d1.day())/\(d1.month())/\(d1.year()) \(d1.hour()):\(d1.minute()):\(d1.second())")
+
+        // Showing date in ISO format
+        print("-> \(d1.ISOString())")
+
         // Starting an activity indicator
         let waitingView = self.testImageView.startLoadingActivity()
         
