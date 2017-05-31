@@ -1,9 +1,9 @@
 //
 //  UIWindow+JSKit.swift
-//  Salvacuore
+//  JSKit
 //
 //  Created by Giacomo Piva on 30/05/17.
-//  Copyright © 2017 UniFE. All rights reserved.
+//  Copyright © 2017 Giacomo Piva. All rights reserved.
 //
 
 import UIKit
