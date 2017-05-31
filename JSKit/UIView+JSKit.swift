@@ -15,7 +15,7 @@ extension UIView {
      * This methods create a UIViex froma a Xib file.
      */
 
-    class func loadFromNib(_ name: String, bundle: Bundle? = nil) -> UIView? {
+    static func loadFromNib(_ name: String, bundle: Bundle? = nil) -> UIView? {
         return UINib(nibName: name, bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 
