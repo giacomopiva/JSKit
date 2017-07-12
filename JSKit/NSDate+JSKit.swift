@@ -23,7 +23,7 @@ extension Date {
     static func dateFromCustomFormatString(_ dateString: String, format: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        //formatter.timeZone = TimeZone(secondsFromGMT: 0)
         if let date = formatter.date(from: dateString) {
             return formatter.date(from: formatter.string(from: date))!
         }
